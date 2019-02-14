@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Galeria</title>
+    <style>
+        *{
+            background-color: gray;
+        }
+        h1{
+
+        text-shadow: 3px 3px 5px whitesmoke,
+        6px 6px 5px blueviolet,
+        9px 9px 5px white;
+        font-family: 'Permanent Marker', cursive;
+        text-align: center !important;
+        }
+        .galeria {
+
+            text-align: center;
+            background-color: white;
+            border-radius: 50px;
+            display: inline-block;
+
+        }
+
+        .contenedor {
+            text-align: center;
+
+        }
+
+        #imagen {
+            border-radius: 15px;
+            display: inline;
+            float: left;
+            -webkit-transition: width 2s, height 2s; /* For Safari 3.1 to 6.0 */
+            transition: width 2s, height 2s;   
+        
+        }
+        #imagen:hover {
+        width: 600px;
+        height: 400px;
+        
+        }
+
+
+        .divan {
+            height: 100%;
+            width: 100%;
+            display: inline-block;
+            float: left;
+            
+
+
+        }
+
+        .div-sian {
+        
+            border-radius: 15px;
+            text-align: center;
+            margin: 1%;
+          
+        }
+
+        .btn-anterior{
+	        display: inline-block; 
+	        padding: 1px 2px;
+	        color: white;
+	        font-family: 'Rubik One', sans-serif;
+	        text-decoration: none;
+	        font-size: 2vw;
+	        transition: all .5s;
+
+        }
+        
+        .btn-siguiente{
+	        display: inline-block; 
+	        padding: 1px 2px;
+	        color: white;
+	        font-family: 'Rubik One', sans-serif;
+	        text-decoration: none;
+	        font-size: 2vw;
+	        transition: all .5s;
+	 
+        }
+        hr.morado {
+
+        border: 2px solid  #3498db;
+        border-radius: 5px;
+        width: 90%;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <div class="contenedor">
+        <h1>GALERIA</h1>
+      
+        <div class="galeria">
+            <img id="imagen" src="img/puppy1.jpg" height="200" width="300">
+        </div>
+        <div class="div-sian">
+            <input type="button" class="btn-anterior" id="anterior" value="⬅">
+            <input type="button" class="btn-siguiente" id="siguiente" value="➡">
+        </div>
+
+
+    </div>
+    <script>
+        //Eventos y escuchas
+        document.getElementById("siguiente").addEventListener("click", siguienteImagen, false);
+        document.getElementById("anterior").addEventListener("click", anteriorImagen, false);
+        //Recursos y variables
+        var arrayFotos = ['img/puppy1.jpg', 'img/puppy2.png', 'img/puppy3.bmp', 'img/puppy4.png', 'img/puppy5.gif',
+            'img/puppy6.bmp'
+        ];
+        var contador = 0;
+        var primeravez = false;
+
+        function siguienteImagen() {
+
+            contador++;
+            let element = document.getElementById("imagen");
+            if (contador >= arrayFotos.length) {
+                contador = 0;
+            }
+            element.src = arrayFotos[contador];
+
+
+
+        }
+
+        function anteriorImagen() {
+            let element = document.getElementById("imagen");
+
+            if (contador <= 0) {
+                contador = arrayFotos.length;
+                //element.src = arrayFotos[contador];
+                anteriorImagen(); //Utilizamos recursividad para controlar fallos
+            } else {
+                contador--;
+                element.src = arrayFotos[contador];
+            }
+
+        }
+    </script>
+</body>
+
+</html>
