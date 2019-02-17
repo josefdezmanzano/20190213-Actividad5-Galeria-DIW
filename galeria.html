@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Galeria</title>
+    <style>
+        body {
+            position: relative;
+            background-image: url("/img/fondomadera.jpg");
+        }
+
+        h1 {
+
+            text-shadow: 3px 3px 5px whitesmoke,
+                6px 6px 5px blueviolet,
+                9px 9px 5px white;
+            font-family: 'Permanent Marker', cursive;
+            text-align: center !important;
+        }
+
+        .galeria {
+
+            border-radius: 50px;
+            display: inline-block;
+
+        }
+
+        .contenedor {
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        img {
+            border-radius: 15px;
+            display: inline;
+            width: 300px;
+            height: 150px;
+            float: left;
+            -webkit-transition: width 2s, height 2s;
+            transition: width 1s, height 1s;
+            /* para Safari de la 3.1 a la 6.0 */
+
+        }
+
+        img:hover {
+            width: 600px;
+            height: 400px;
+
+        }
+        
+        @media screen and (max-width: 600px) {
+            table {
+                width: 100%;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr:nth-of-type(2n) {
+                background-color: inherit;
+            }
+
+            tr td:first-child {
+                background: #f0f0f0;
+                font-weight: bold;
+                font-size: 1.3em;
+            }
+
+            td {
+                display: block;
+                text-align: center;
+            }
+
+            td:before {
+                content: attr(data-th);
+                display: block;
+                text-align: center;
+            }
+
+            img:hover {
+                width: 325px;
+                height: 185px;
+
+            }
+
+            img {
+                width: 300px;
+                height: 150px;
+            }
+
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto" rel="stylesheet">
+</head>
+
+<body onload="cargarImagenes()">
+
+    <div class="contenedor">
+
+        <h1>Unos adorables Puppys</h1>
+
+        <div class="galeria" id="galeria">
+            <table class="tgaleria" id="tgaleria">
+
+            </table>
+        </div>
+
+
+
+    </div>
+
+    <script>
+
+
+        //Recursos y variables
+        var arrayFotos = ['img/puppy1.jpg', 'img/puppy2.png', 'img/puppy3.bmp', 'img/puppy4.png', 'img/puppy5.gif',
+            'img/puppy6.bmp', 'img/puppy7.jpg', 'img/puppy8.jpg', 'img/puppy9.jpg'
+        ];
+        var contador = 0;
+        var primeravez = false;
+
+        function cargarImagenes() {
+
+            let contador = 0;
+            let tdestino = document.getElementById('tgaleria');
+
+
+            for (let i = 0; i < arrayFotos.length; i++) {
+                const element = arrayFotos[i];
+
+
+                let img = document.createElement("img");
+                let td = document.createElement("td");
+
+                if (contador == 0) {
+                    var tr = document.createElement("tr");
+                    tr.setAttribute("id", "variante" + i);
+                    var nombre = "variante" + i;
+                }
+
+                tdestino.appendChild(tr);
+                document.getElementById(nombre).appendChild(td).appendChild(img).src = element;
+
+                contador++;
+                if (contador == 3) {
+                    contador = 0;
+
+                }
+
+            }
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
